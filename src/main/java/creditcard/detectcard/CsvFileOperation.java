@@ -1,5 +1,6 @@
 package creditcard.detectcard;
 
+import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import creditcard.model.CardDto;
@@ -14,8 +15,10 @@ public class CsvFileOperation implements IoOperation
         try (Reader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)))) {
 
             // create csv bean reader
-            CsvToBean<CardDto> csvToBean = new CsvToBeanBuilder(reader).withType(CardDto.class).withIgnoreLeadingWhiteSpace(
-                true).build();
+            CsvToBean<CardDto> csvToBean = new CsvToBeanBuilder(reader)
+                    .withType(CardDto.class)
+                    .withIgnoreLeadingWhiteSpace(true)
+                    .build();
 
             // convert `CsvToBean` object to list of cards
             List<CardDto> cards = csvToBean.parse();
@@ -27,7 +30,12 @@ public class CsvFileOperation implements IoOperation
 
         return null;
     }
-    public void writeFile(){
-
+    public void writeFile(String filePath, List<String> response) throws Exception{
+        CSVWriter csvWriter = new CSVWriter(new FileWriter(filePath));
+        for(String row : response){
+            String [] arr = row.split("$$");
+            csvWriter.writeNext(arr);
+        }
+        csvWriter.close();
     }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 interface IoOperation
 {
     List<CardDto> readFile(String fileName);
-    void writeFile();
+    void writeFile(String filePath, List<String> response) throws Exception;
 }

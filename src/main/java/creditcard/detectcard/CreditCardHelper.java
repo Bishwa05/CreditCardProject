@@ -49,10 +49,6 @@ public class CreditCardHelper
         for(CardDto c : cardsDto){
             String cardNo = c.getCardNumber();
 
-            if(cardNo.length() > 19){
-                String res = c.getCardNumber()+"$$"+"Invalid Card";
-                result.add(res);
-            }
             boolean cardFound = false;
             if(cardNo.length() ==16){
                 int sec = cardNo.charAt(1) -48;
