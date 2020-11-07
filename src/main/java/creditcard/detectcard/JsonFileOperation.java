@@ -14,7 +14,7 @@ public class JsonFileOperation implements IoOperation
         return null;
 
     }
-    public void writeFile(List<String> response){
+    public void writeFile(String filePath, List<String> response){
 
     }
 }
