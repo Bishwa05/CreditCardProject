@@ -13,7 +13,7 @@ public class MasterCard extends CreditCard
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
         this.nameOfCardholder = nameOfCardholder;
-        this.cardType = "Discover";
+        this.cardType = "MasterCard";
     }
 
     public String response(){

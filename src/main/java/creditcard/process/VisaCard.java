@@ -13,7 +13,7 @@ public class VisaCard extends CreditCard
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
         this.nameOfCardholder = nameOfCardholder;
-        this.cardType = "Discover";
+        this.cardType = "Visa";
     }
 
     public String response(){
