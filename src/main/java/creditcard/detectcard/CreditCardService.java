@@ -5,30 +5,44 @@ import creditcard.process.AmexCard;
 import creditcard.process.DiscoverCard;
 import creditcard.process.MasterCard;
 import creditcard.process.VisaCard;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
+@Component
 public class CreditCardService
 {
+
+    public Context getContext(String extension){
+        Context ctx = null;
+
+        if("json".equals(extension)){
+            ctx = new Context(new JsonFileOperation());
+        } else if("xml".equals(extension)) {
+            ctx = new Context(new XmlFileOperation());
+        } else if("csv".equals(extension)){
+            ctx = new Context(new CsvFileOperation());
+        }
+        return ctx;
+    }
     public List<CardDto> checkAndReadFile(String filePath){
 
         String extension = filePath.substring(
-            filePath.lastIndexOf("."));
+            filePath.lastIndexOf(".")+1);
+        Context ctx = getContext(extension);
+        return ctx.readFile(filePath);
+    }
 
-        if("json".equals(extension)){
-            Context ctx = new Context(new JsonFileOperation());
-            return ctx.readFile(filePath);
-        } else if("xml".equals(extension)) {
-            Context ctx = new Context(new XmlFileOperation());
-            return ctx.readFile(filePath);
-        } else if("csv".equals(extension)){
-            Context ctx = new Context(new CsvFileOperation());
-            return ctx.readFile(filePath);
-        }
-        return null;
+    public void writeToFile(String filePath, List<String> data) throws Exception{
+
+        String extension = filePath.substring(
+            filePath.lastIndexOf(".")+1);
+        Context ctx = getContext(extension);
+        ctx.writeFile(filePath, data);
     }
 
     public List<String> processCards(List<CardDto> cardsDto){

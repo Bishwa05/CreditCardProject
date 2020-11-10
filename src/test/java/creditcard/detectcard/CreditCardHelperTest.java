@@ -32,25 +32,6 @@ public class CreditCardHelperTest
     @MockBean
     private CreditCardService service;
 
-//    @BeforeEach
-//    public void setUp(){
-
-
-//        CardDto c6 = new CardDto("545678658907123", new Date(), "Master Card");
-//        CardDto c7 = new CardDto("525678658907123", new Date(), "Master Card");
-//        CardDto c8 = new CardDto("52567865890712389", new Date(), "Invalid Card");
-//        CardDto c9 = new CardDto("3956786589071235", new Date(), "Invalid Card");
-////        cards.add(c1);
-////        cards.add(c2);
-////        cards.add(c3);
-////        cards.add(c4);
-////        cards.add(c5);
-////        cards.add(c6);
-////        cards.add(c7);
-////        cards.add(c8);
-////        cards.add(c9);
-//
-//    }
 
     @Test
     public void isAmexCardTest() throws Exception {

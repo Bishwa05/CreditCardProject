@@ -32,12 +32,17 @@ public class CreditCardController
         // parseFile and generate card put cardId and valid in Map
         // write File
 
-
+    try {
         List<CardDto> cards = service.checkAndReadFile(filePath);
 
         printCards(cards);
 
         List<String> responseDetail = service.processCards(cards);
+
+        service.writeToFile(filePath, responseDetail);
+    } catch (Exception e){
+        e.printStackTrace();
+    }
 
 
     }
