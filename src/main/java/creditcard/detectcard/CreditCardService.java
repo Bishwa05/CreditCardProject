@@ -34,7 +34,12 @@ public class CreditCardService
         String extension = filePath.substring(
             filePath.lastIndexOf(".")+1);
         Context ctx = getContext(extension);
-        return ctx.readFile(filePath);
+        if(ctx != null) {
+            return ctx.readFile(filePath);
+        }
+        else {
+            return null;
+        }
     }
 
     public void writeToFile(String filePath, List<String> data) throws Exception{
@@ -42,7 +47,9 @@ public class CreditCardService
         String extension = filePath.substring(
             filePath.lastIndexOf(".")+1);
         Context ctx = getContext(extension);
-        ctx.writeFile(filePath, data);
+        if(ctx != null) {
+            ctx.writeFile(filePath, data);
+        }
     }
 
     public List<String> processCards(List<CardDto> cardsDto){
