@@ -58,6 +58,7 @@ public class CreditCardService
         for(CardDto c : cardsDto){
             String cardNo = c.getCardNumber();
 
+            System.out.println("Hello"+ c);
             boolean cardFound = false;
             if(cardNo.length() ==16){
                 int sec = cardNo.charAt(1) -48;
@@ -92,7 +93,7 @@ public class CreditCardService
             }
 
             if(!cardFound){
-                String res = c.getCardNumber()+"$$"+"Invalid Card";
+                String res = c.getCardNumber()+"$"+"Invalid Card";
                 result.add(res);
             }
         }

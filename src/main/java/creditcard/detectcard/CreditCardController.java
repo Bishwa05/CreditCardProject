@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 public class CreditCardController
 {
     private final CreditCardService service;
@@ -27,10 +27,6 @@ public class CreditCardController
 
     @RequestMapping(value = "/process", method = RequestMethod.GET)
     public void processCardJson(@RequestParam("filePath") String filePath){
-
-        //readFile();
-        // parseFile and generate card put cardId and valid in Map
-        // write File
 
     try {
         List<CardDto> cards = service.checkAndReadFile(filePath);
@@ -50,7 +46,7 @@ public class CreditCardController
 
     public static void printCards(List<CardDto> cards){
         for(CardDto c : cards){
-            System.out.println();
+            System.out.println(c);
         }
     }
 

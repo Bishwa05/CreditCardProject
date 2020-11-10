@@ -17,7 +17,7 @@ public class DiscoverCard extends CreditCard
     }
 
     public String response(){
-        return cardNumber + "$$"+ cardType;
+        return cardNumber + "$"+ cardType;
     }
 
 }
